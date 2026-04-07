@@ -1,0 +1,15 @@
+{
+  "name": "monorepo",
+  "private": true,
+  "workspaces": [
+    "front-end",
+    "back-end",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
