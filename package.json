@@ -7,7 +7,7 @@
     "shared"
   ],
   "scripts": {
-    "dev": "npm run dev --workspaces"
+    "dev": "concurrently \"npm run dev -w back-end\" \"npm run dev -w front-end\""
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
