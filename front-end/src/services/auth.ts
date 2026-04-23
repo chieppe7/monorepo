@@ -1,15 +1,16 @@
-export async function loginRequest(email: string, password: string) {
-  const res = await fetch('http://localhost:3333/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password })
-  })
+import { ApiModule } from "../lib/rest"
 
-  if (!res.ok) {
-    throw new Error('Backend offline ou erro de login')
+class Module extends ApiModule {
+  protected route = '/api/login'
+
+  constructor () {
+    super()
   }
 
-  return await res.json()
+  async login (user: string, pass: string) {
+    return await this.post(this.route, { user, pass })
+  }
 }
+
+export const AuthAPI = new Module()
+
