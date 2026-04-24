@@ -1,0 +1,41 @@
+services:
+  back-end:
+    build:
+      context: ./back-end
+    container_name: backend
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./back-end:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3333
+
+  front-end:
+    build:
+      context: ./front-end
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./front-end:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
