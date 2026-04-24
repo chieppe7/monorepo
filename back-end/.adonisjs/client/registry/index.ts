@@ -6,7 +6,12 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-,
+  'auth.login': {
+    methods: ["POST"],
+    pattern: '/api/auth/login',
+    tokens: [{"old":"/api/auth/login","type":0,"val":"api","end":""},{"old":"/api/auth/login","type":0,"val":"auth","end":""},{"old":"/api/auth/login","type":0,"val":"login","end":""}],
+    types: placeholder as Registry['auth.login']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
