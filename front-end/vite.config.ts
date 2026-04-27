@@ -5,7 +5,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
 
   const useLocalProxy = env.PROXY_API_LOCAL === 'true'
-
+  console.log({useLocalProxy})
+  console.log('ENV:', env)
   return {
     plugins: [vue()],
     server: {

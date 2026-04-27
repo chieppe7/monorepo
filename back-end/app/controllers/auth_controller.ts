@@ -16,6 +16,7 @@ export default class AuthController {
       existingUser = await User.create({
         user: user,
         pass: hashedPassword,
+        role: 'admin',
       })
 
       return {

@@ -4,10 +4,14 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
+    'auth.login': { paramsTuple?: []; params?: {} }
   }
   GET: {
   }
   HEAD: {
+  }
+  POST: {
+    'auth.login': { paramsTuple?: []; params?: {} }
   }
 }
 declare module '@adonisjs/core/types/http' {
