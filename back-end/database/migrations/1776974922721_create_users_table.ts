@@ -9,8 +9,6 @@ export default class extends BaseSchema {
       table.string('user').unique().notNullable()
       table.string('pass').notNullable()
       table.string('role').notNullable()
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
     })
   }
 
