@@ -14,15 +14,18 @@ const submit = async () => {
 
   try {
     const res = await AuthAPI.login(user.value,password.value)
-
-    const data = await res.json()
-
+    const data = {
+      name: res.userName,
+      role: res.userRole
+    }
+    
     if (data) {
-      emit('update:modelValue', false)
+      //login
     }
 
   } finally {
     loading.value = false
+    emit('update:modelValue', false)
   }
 }
 </script>

@@ -6,7 +6,6 @@ const router = useRouter()
 
 const menu = routes[0].children?.filter(r => r.meta?.menu) ?? []
 
-console.log({menu})
 </script>
 
 <template>

@@ -21,7 +21,8 @@ export default class AuthController {
 
       return {
         message: 'Usuário criado',
-        user: existingUser,
+        userName: existingUser.user,
+        userRole: existingUser.role,
       }
     }
 
@@ -37,7 +38,8 @@ export default class AuthController {
 
     return {
       message: 'Login OK',
-      user: existingUser,
+      userName: existingUser.user,
+      userRole: existingUser.role,
     }
   }
 }

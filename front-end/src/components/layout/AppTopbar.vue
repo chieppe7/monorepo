@@ -4,7 +4,6 @@ import LoginModal from '../modal/Login.modal.vue'
 
 const open = ref(false)
 
-console.log('top')
 </script>
 
 <template>
@@ -12,7 +11,6 @@ console.log('top')
     <v-btn @click="open = true">
       Login
     </v-btn>
-
     <LoginModal v-model="open" />
   </v-app-bar>
 </template>

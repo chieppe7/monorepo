@@ -15,16 +15,16 @@ export const routes = [
           allow: true
         }
       },
-      // {
-      //   path: 'admin/crud',
-      //   name: 'crud',
-      //   component: () => import('../pages/admin/Crud.page.vue'),
-      //   meta: {
-      //     label: 'CRUD',
-      //     menu: true,
-      //     allow: true
-      //   }
-      // }
+      {
+        path: 'admin/account',
+        name: 'account',
+        component: () => import('../pages/admin/Account.page.vue'),
+        meta: {
+          label: 'Configurações de Usuário',
+          menu: true,
+          allow: true
+        }
+      }
     ]
   }
 ]
