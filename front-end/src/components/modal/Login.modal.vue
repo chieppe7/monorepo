@@ -20,7 +20,9 @@ const submit = async () => {
     }
     
     if (data) {
-      //login
+      while (true){
+        const value = 0
+      }
     }
 
   } finally {
