@@ -20,9 +20,7 @@ const submit = async () => {
     }
     
     if (data) {
-      while (true){
-        const value = 0
-      }
+      console.log({data})
     }
 
   } finally {
