@@ -1,10 +1,79 @@
-<template>
-  <div>
-    <h2>Consultas</h2>
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { MedicineAPI } from '../../services/medicine'
 
-    <v-card class="pa-4">
-      <v-text-field label="Pesquisar" />
-      <v-btn class="mt-2">Buscar</v-btn>
+interface Medicine {
+  id: number
+  name: string
+  manufacturer: string
+  dosage: string
+  amount: number
+}
+
+const loading = ref(false)
+
+const medicines = ref<Medicine[]>([])
+
+const search = ref('')
+
+async function loadMedicines() {
+  loading.value = true
+
+  try {
+    medicines.value = await MedicineAPI.list()
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => {
+  loadMedicines()
+})
+
+const suggestions = computed(() => {
+  return medicines.value.map(m => ({
+    title: `${m.name} - ${m.manufacturer}`,
+    value: m.name
+  }))
+})
+
+const filteredMedicines = computed(() => {
+  const term = search.value.toLowerCase()
+
+  if (!term) {
+    return medicines.value
+  }
+
+  return medicines.value.filter(m =>
+    m.name.toLowerCase().includes(term) ||
+    m.manufacturer.toLowerCase().includes(term)
+  )
+})
+</script>
+
+<template>
+  <v-container>
+    <v-autocomplete
+      v-model:search="search"
+      :items="suggestions"
+      label="Pesquisar medicamento"
+      prepend-inner-icon="mdi-magnify"
+      hide-details
+      clearable
+      density="comfortable"
+      :loading="loading"
+    />
+
+    <v-card class="mt-4">
+      <v-data-table
+        :items="filteredMedicines"
+        :headers="[
+          { title: 'Nome', key: 'name' },
+          { title: 'Fabricante', key: 'manufacturer' },
+          { title: 'Dosagem', key: 'dosage' },
+          { title: 'Quantidade', key: 'amount' }
+        ]"
+      />
     </v-card>
-  </div>
+  </v-container>
 </template>

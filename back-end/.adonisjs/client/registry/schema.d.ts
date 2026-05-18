@@ -19,4 +19,52 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'medicine.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/medicines'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'medicine.store': {
+    methods: ["POST"]
+    pattern: '/api/medicines'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'medicine.update': {
+    methods: ["PATCH"]
+    pattern: '/api/medicines/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'medicine.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/medicines/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }
