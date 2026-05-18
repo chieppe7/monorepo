@@ -13,5 +13,4 @@
 import AppSidebar from '../components/layout/AppSidebar.vue'
 import AppTopbar from '../components/layout/AppTopbar.vue'
 
-console.log('default')
 </script>
