@@ -52,7 +52,7 @@ const filteredMedicines = computed(() => {
 </script>
 
 <template>
-  <v-container>
+  <v-container fluid>
     <v-autocomplete
       v-model:search="search"
       :items="suggestions"
@@ -64,16 +64,30 @@ const filteredMedicines = computed(() => {
       :loading="loading"
     />
 
-    <v-card class="mt-4">
-      <v-data-table
-        :items="filteredMedicines"
-        :headers="[
-          { title: 'Nome', key: 'name' },
-          { title: 'Fabricante', key: 'manufacturer' },
-          { title: 'Dosagem', key: 'dosage' },
-          { title: 'Quantidade', key: 'amount' }
-        ]"
-      />
+    <v-card class="mt-4 d-flex justify-center">
+      <div class="w-100">
+          <v-data-table
+            :items="filteredMedicines"
+            :headers="[
+              { title: 'Nome', key: 'name' },
+              { title: 'Fabricante', key: 'manufacturer' },
+              { title: 'Dosagem', key: 'dosage' },
+              { title: 'Quantidade', key: 'amount' }
+            ]"
+          />
+        </div>  
     </v-card>
   </v-container>
 </template>
+
+<style scoped>
+:deep(.v-data-table td:first-child),
+:deep(.v-data-table th:first-child) {
+  padding-left: 96px !important;
+}
+
+:deep(.v-data-table td:last-child),
+:deep(.v-data-table th:last-child) {
+  padding-right: 96px !important;
+}
+</style>
