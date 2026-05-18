@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { AuthAPI } from '../../services/auth';
+import { AuthAPI } from '../../services/auth'
+import { authStore } from '../../stores/auth'
 
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits(['update:modelValue'])
@@ -13,14 +14,15 @@ const submit = async () => {
   loading.value = true
 
   try {
-    const res = await AuthAPI.login(user.value,password.value)
+    const res = await AuthAPI.login(user.value, password.value)
+
     const data = {
       name: res.userName,
       role: res.userRole
     }
-    
+
     if (data) {
-      //login
+      authStore.login(data)
     }
 
   } finally {

@@ -17,3 +17,15 @@ router
     router.post('/login', '#controllers/auth_controller.login')
   })
   .prefix('/api/auth')
+
+router
+  .group(() => {
+    router.get('/', '#controllers/medicine_controller.index')
+
+    router.post('/', '#controllers/medicine_controller.store')
+
+    router.patch('/:id', '#controllers/medicine_controller.update')
+
+    router.delete('/:id', '#controllers/medicine_controller.destroy')
+  })
+  .prefix('/api/medicines')

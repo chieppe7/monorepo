@@ -6,6 +6,21 @@
 
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
+export class MedicineSchema extends BaseModel {
+  static $columns = ['amount', 'dosage', 'id', 'manufacturer', 'name'] as const
+  $columns = MedicineSchema.$columns
+  @column()
+  declare amount: number
+  @column()
+  declare dosage: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare manufacturer: string
+  @column()
+  declare name: string
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['id', 'pass', 'role', 'user'] as const
   $columns = UserSchema.$columns

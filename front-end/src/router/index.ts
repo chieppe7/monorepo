@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { authStore, type UserData } from '../stores/auth'
 
 export const routes = [
   {
@@ -12,7 +13,7 @@ export const routes = [
         meta: {
           label: 'Consultas',
           menu: true,
-          allow: true
+          allow: () => true,
         }
       },
       {
@@ -22,7 +23,17 @@ export const routes = [
         meta: {
           label: 'Configurações de Usuário',
           menu: true,
-          allow: true
+          allow: (user: UserData) => user?.role === 'admin'
+        }
+      },
+      {
+        path: 'admin/medince',
+        name: 'medicine',
+        component: () => import('../pages/admin/Medicine.page.vue'),
+        meta: {
+          label: 'Controle de Medicamentos',
+          menu: true,
+          allow: (user: UserData) => user?.role === 'admin'
         }
       }
     ]
