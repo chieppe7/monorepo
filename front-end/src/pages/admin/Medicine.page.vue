@@ -27,11 +27,11 @@ const editedMedicine = ref<Medicine>({
 })
 
 const headers = [
+  { title: '', key: 'actions', sortable: false, width: 70, align: 'center' },
   { title: 'Nome', key: 'name' },
+  { title: 'Fabricante', key: 'manufacturer' },
   { title: 'Dosagem', key: 'dosage' },
   { title: 'Quantidade', key: 'amount' },
-  { title: 'Fabricante', key: 'manufacturer' },
-  { title: '', key: 'actions', sortable: false }
 ]
 
 const filteredMedicines = computed(() => {
@@ -110,30 +110,33 @@ async function deleteMedicine(id: number) {
         :headers="headers"
         :items="filteredMedicines"
       >
-        <template #item.actions="{ item }">
-          <v-menu>
+        <template #header.actions>
+          <v-tooltip text="Ações">
             <template #activator="{ props }">
-              <v-btn
-                icon="mdi-dots-vertical"
-                variant="text"
-                v-bind="props"
-              />
+              <v-icon v-bind="props" size="18">mdi-square-edit-outline</v-icon>
             </template>
+          </v-tooltip>
+        </template>
+         <template #item.actions="{ item }">
+            <v-menu>
+              <template #activator="{ props }">
+                <v-btn
+                  icon="mdi-dots-vertical"
+                  variant="text"
+                  v-bind="props"
+                />
+              </template>
 
-            <v-list>
-              <v-list-item @click="editMedicine(item)">
-                <v-list-item-title>
-                  Editar
-                </v-list-item-title>
-              </v-list-item>
+              <v-list>
+                <v-list-item @click="editMedicine(item)">
+                  <v-list-item-title>Editar</v-list-item-title>
+                </v-list-item>
 
-              <v-list-item @click="deleteMedicine(item.id)">
-                <v-list-item-title>
-                  Excluir
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+                <v-list-item @click="deleteMedicine(item.id)">
+                  <v-list-item-title>Excluir</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
         </template>
       </v-data-table>
     </v-card>

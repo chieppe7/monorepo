@@ -10,36 +10,51 @@ const user = ref('')
 const password = ref('')
 const loading = ref(false)
 
+const error = ref<string | null>(null)
+
 const submit = async () => {
   loading.value = true
+  error.value = null
 
   try {
     const res = await AuthAPI.login(user.value, password.value)
 
-    const data = {
+    authStore.login({
       name: res.userName,
       role: res.userRole
-    }
+    })
 
-    if (data) {
-      authStore.login(data)
-    }
+    emit('update:modelValue', false)
 
+  } catch (err: any) {
+    error.value =
+      err?.response?.data?.errors?.base?.[0] ||
+      'Erro ao fazer login'
   } finally {
     loading.value = false
-    emit('update:modelValue', false)
   }
 }
 </script>
 
 <template>
-  <v-dialog :model-value="props.modelValue">
+  <v-dialog
+    :model-value="props.modelValue"
+    @update:model-value="emit('update:modelValue', $event)"
+  >
     <v-card>
-      <v-card-title>Login</v-card-title>
+      <v-card-title>Entrar</v-card-title>
 
       <v-card-text>
         <v-text-field v-model="user" label="Usuário" />
         <v-text-field v-model="password" label="Senha" type="password" />
+        <v-alert
+          v-if="error"
+          type="error"
+          density="compact"
+          class="mb-3"
+        >
+          {{ error }}
+        </v-alert>
       </v-card-text>
 
       <v-card-actions>
