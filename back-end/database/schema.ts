@@ -6,11 +6,22 @@
 
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export class MedicineSchema extends BaseModel {
-  static $columns = ['amount', 'dosage', 'id', 'manufacturer', 'name'] as const
-  $columns = MedicineSchema.$columns
+export class MedicineInstanceSchema extends BaseModel {
+  static $columns = ['amount', 'id', 'medicineId', 'ubsId'] as const
+  $columns = MedicineInstanceSchema.$columns
   @column()
   declare amount: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare medicineId: number
+  @column()
+  declare ubsId: number
+}
+
+export class MedicineSchema extends BaseModel {
+  static $columns = ['dosage', 'id', 'manufacturer', 'name'] as const
+  $columns = MedicineSchema.$columns
   @column()
   declare dosage: string
   @column({ isPrimary: true })
@@ -21,15 +32,38 @@ export class MedicineSchema extends BaseModel {
   declare name: string
 }
 
-export class UserSchema extends BaseModel {
-  static $columns = ['id', 'pass', 'role', 'user'] as const
-  $columns = UserSchema.$columns
+export class UbSchema extends BaseModel {
+  static $columns = ['adddress', 'id', 'latitude', 'longitude', 'name'] as const
+  $columns = UbSchema.$columns
+  @column()
+  declare adddress: string
   @column({ isPrimary: true })
   declare id: number
+  @column()
+  declare latitude: string | null
+  @column()
+  declare longitude: string | null
+  @column()
+  declare name: string
+}
+
+export class UserSchema extends BaseModel {
+  static $columns = ['address', 'email', 'id', 'latitude', 'longitude', 'name', 'pass', 'role'] as const
+  $columns = UserSchema.$columns
+  @column()
+  declare address: string
+  @column()
+  declare email: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare latitude: string | null
+  @column()
+  declare longitude: string | null
+  @column()
+  declare name: string
   @column()
   declare pass: string
   @column()
   declare role: string
-  @column()
-  declare user: string
 }

@@ -9,4 +9,10 @@ export default class UBS extends BaseModel {
 
   @column()
   declare address: string
+
+  @column()
+  declare latitude: number | null
+
+  @column()
+  declare longitude: number | null
 }

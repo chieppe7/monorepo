@@ -6,4 +6,5 @@
 export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Medicine: () => import('#controllers/medicine_controller'),
+  Ubs: () => import('#controllers/ubs_controller'),
 }

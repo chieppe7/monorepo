@@ -22,12 +22,25 @@ router
 
 router
   .group(() => {
+    // Medicine catalog
     router.get('/', '#controllers/medicine_controller.index')
-
     router.post('/', '#controllers/medicine_controller.store')
-
     router.patch('/:id', '#controllers/medicine_controller.update')
-
     router.delete('/:id', '#controllers/medicine_controller.destroy')
+
+    // Stock at UBS facilities
+    router.get('/instances', '#controllers/medicine_controller.indexInstances')
+    router.post('/instances', '#controllers/medicine_controller.storeInstance')
+    router.patch('/instances/:id', '#controllers/medicine_controller.updateInstance')
+    router.delete('/instances/:id', '#controllers/medicine_controller.destroyInstance')
   })
   .prefix('/api/medicines')
+
+router
+  .group(() => {
+    router.get('/', '#controllers/ubs_controller.index')
+    router.post('/', '#controllers/ubs_controller.store')
+    router.patch('/:id', '#controllers/ubs_controller.update')
+    router.delete('/:id', '#controllers/ubs_controller.destroy')
+  })
+  .prefix('/api/ubs')
