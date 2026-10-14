@@ -6,7 +6,7 @@ import { authStore } from '../../stores/auth'
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits(['update:modelValue'])
 
-const user = ref('')
+const email = ref('')
 const password = ref('')
 const loading = ref(false)
 
@@ -17,11 +17,15 @@ const submit = async () => {
   error.value = null
 
   try {
-    const res = await AuthAPI.login(user.value, password.value)
+    const res = await AuthAPI.login(email.value, password.value)
 
     authStore.login({
-      name: res.userName,
-      role: res.userRole
+      email: res.email,
+      name: res.name,
+      role: res.role,
+      address: res.address,
+      latitude: res.latitude,
+      longitude: res.longitude,
     })
 
     emit('update:modelValue', false)
@@ -45,7 +49,7 @@ const submit = async () => {
       <v-card-title>Entrar</v-card-title>
 
       <v-card-text>
-        <v-text-field v-model="user" label="Usuário" />
+        <v-text-field v-model="email" label="Email" />
         <v-text-field v-model="password" label="Senha" type="password" />
         <v-alert
           v-if="error"

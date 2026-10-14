@@ -3,8 +3,12 @@ import { reactive } from 'vue'
 const savedUser = localStorage.getItem('user')
 
 export type UserData = {
+  email:string,
   name: string,
   role: string,
+  address: string,
+  latitude: number,
+  longitude: number,
 }
 
 export const authStore = reactive({

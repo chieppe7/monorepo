@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import LoginModal from '../modal/Login.modal.vue'
+import CreateAccountModal from '../modal/CreateAccount.modal.vue'
 import { authStore } from '../../stores/auth';
 import { useRoute } from 'vue-router'
 
-const open = ref(false)
+const openLogin = ref(false)
+const openCreate = ref(false)
 const route = useRoute()
 
 const pageTitle = computed(() => {
@@ -27,12 +29,22 @@ const pageTitle = computed(() => {
         v-if="authStore.user === null"
         prepend-icon="mdi-login"
         variant="text"
-        @click="open = true"
+        @click="openCreate = true"
+      >
+        Registrar
+      </v-btn>
+
+      <v-btn
+        v-if="authStore.user === null"
+        prepend-icon="mdi-login"
+        variant="text"
+        @click="openLogin = true"
       >
         Entrar
       </v-btn>
 
-      <LoginModal v-model="open" />
+      <LoginModal v-model="openLogin" />
+      <CreateAccountModal v-model="openCreate"/>
     </div>
   </v-app-bar>
 </template>
