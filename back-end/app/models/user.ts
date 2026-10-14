@@ -5,11 +5,23 @@ export default class User extends BaseModel {
   declare id: number
 
   @column()
-  declare user: string
+  declare name: string
+
+  @column()
+  declare email: string
 
   @column()
   declare pass: string
 
   @column()
-  declare role: string
+  declare role: 'admin' | 'user'
+
+  @column()
+  declare address: string
+
+  @column()
+  declare latitude: number | null
+
+  @column()
+  declare longitude: number | null
 }

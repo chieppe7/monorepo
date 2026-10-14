@@ -1,45 +1,108 @@
-// import type { HttpContext } from '@adonisjs/core/http'
-
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import hash from '@adonisjs/core/services/hash'
 
 export default class AuthController {
   async login({ request, response }: HttpContext) {
-    const { user, pass } = request.only(['user', 'pass'])
+    const { email, pass } = request.only(['email', 'pass'])
 
-    let existingUser = await User.findBy('user', user)
+    const user = await User.findBy('email', email)
 
-    if (!existingUser) {
-      const hashedPassword = await hash.make(pass)
-
-      existingUser = await User.create({
-        user: user,
-        pass: hashedPassword,
-        role: 'admin',
-      })
-
-      return {
-        message: 'Usuário criado',
-        userName: existingUser.user,
-        userRole: existingUser.role,
-      }
-    }
-
-    const isValid = await hash.verify(existingUser.pass, pass)
-
-    if (!isValid) {
-      return response.status(401).send({
+    if (!user || !(await hash.verify(user.pass, pass))) {
+      return response.unauthorized({
         errors: {
-          base: ['Senha inválida'],
+          base: ['Credenciais inválidas'],
         },
       })
     }
 
     return {
-      message: 'Login OK',
-      userName: existingUser.user,
-      userRole: existingUser.role,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      address: user.address,
+      latitude: user.latitude,
+      longitude: user.longitude,
     }
+  }
+
+  async register({ request, response }: HttpContext) {
+    const { name, email, pass, address, latitude, longitude } = request.only([
+      'name',
+      'email',
+      'pass',
+      'address',
+      'latitude',
+      'longitude',
+    ])
+
+    if (await User.findBy('email', email)) {
+      return response.conflict({
+        errors: {
+          email: ['Este e-mail já está cadastrado'],
+        },
+      })
+    }
+
+    const user = await User.create({
+      name,
+      email,
+      pass: await hash.make(pass),
+      role: 'user',
+      address,
+      latitude,
+      longitude,
+    })
+
+    return response.created({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      address: user.address,
+      latitude: user.latitude,
+      longitude: user.longitude,
+    })
+  }
+
+  async createUser({ request, response }: HttpContext) {
+    const { name, email, pass, address, latitude, longitude, role } = request.only([
+      'name',
+      'email',
+      'pass',
+      'address',
+      'latitude',
+      'longitude',
+      'role',
+    ])
+
+    if (await User.findBy('email', email)) {
+      return response.conflict({
+        errors: {
+          email: ['Este e-mail já está cadastrado'],
+        },
+      })
+    }
+
+    const user = await User.create({
+      name,
+      email,
+      pass: await hash.make(pass),
+      role,
+      address,
+      latitude,
+      longitude,
+    })
+
+    return response.created({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      address: user.address,
+      latitude: user.latitude,
+      longitude: user.longitude,
+    })
   }
 }

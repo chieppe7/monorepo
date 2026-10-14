@@ -7,7 +7,7 @@ export default class MedicineController {
   }
 
   async store({ request }: HttpContext) {
-    const data = request.only(['name', 'dosage', 'amount', 'manufacturer'])
+    const data = request.only(['name', 'dosage', 'manufacturer'])
 
     const medicine = await Medicine.create(data)
 
@@ -26,7 +26,7 @@ export default class MedicineController {
       })
     }
 
-    const data = request.only(['name', 'dosage', 'amount', 'manufacturer'])
+    const data = request.only(['name', 'dosage', 'manufacturer'])
 
     medicine.merge(data)
 

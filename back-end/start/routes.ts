@@ -15,6 +15,8 @@ router.get('/', () => {
 router
   .group(() => {
     router.post('/login', '#controllers/auth_controller.login')
+    router.post('/register', '#controllers/auth_controller.register')
+    router.post('/users', '#controllers/auth_controller.createUser')
   })
   .prefix('/api/auth')
 
