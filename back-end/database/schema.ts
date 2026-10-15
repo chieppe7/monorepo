@@ -33,10 +33,10 @@ export class MedicineSchema extends BaseModel {
 }
 
 export class UbSchema extends BaseModel {
-  static $columns = ['adddress', 'id', 'latitude', 'longitude', 'name'] as const
+  static $columns = ['address', 'id', 'latitude', 'longitude', 'name'] as const
   $columns = UbSchema.$columns
   @column()
-  declare adddress: string
+  declare address: string
   @column({ isPrimary: true })
   declare id: number
   @column()

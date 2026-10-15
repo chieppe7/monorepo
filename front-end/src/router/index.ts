@@ -37,6 +37,17 @@ export const routes = [
           menu: true,
           allow: (user: UserData) => user?.role === 'admin'
         }
+      },
+      {
+        path: 'admin/ubs',
+        name: 'ubs',
+        component: () => import('../pages/admin/UBS.page.vue'),
+        meta: {
+          label: 'Controle de UBS',
+          icon: 'mdi-hospital-building',
+          menu: true,
+          allow: (user: UserData) => user?.role === 'admin'
+        }
       }
     ]
   }

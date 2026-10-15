@@ -22,7 +22,6 @@ const editedMedicine = ref<Medicine>({
   id: 0,
   name: '',
   dosage: '',
-  amount: 0,
   manufacturer: ''
 })
 
@@ -31,7 +30,6 @@ const headers = [
   { title: 'Nome', key: 'name' },
   { title: 'Fabricante', key: 'manufacturer' },
   { title: 'Dosagem', key: 'dosage' },
-  { title: 'Quantidade', key: 'amount' },
 ]
 
 const filteredMedicines = computed(() => {
@@ -49,7 +47,6 @@ function newMedicine() {
     id: 0,
     name: '',
     dosage: '',
-    amount: 0,
     manufacturer: ''
   }
 
@@ -163,12 +160,6 @@ async function deleteMedicine(id: number) {
           <v-text-field
             v-model="editedMedicine.dosage"
             label="Dosagem"
-          />
-
-          <v-text-field
-            v-model.number="editedMedicine.amount"
-            type="number"
-            label="Quantidade"
           />
 
           <v-text-field

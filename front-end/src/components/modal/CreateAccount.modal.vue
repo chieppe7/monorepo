@@ -197,16 +197,6 @@ onBeforeUnmount(() => {
         />
 
         <v-alert
-          v-if="latitude !== null && longitude !== null"
-          type="info"
-          density="compact"
-          class="mt-3"
-        >
-          Latitude: {{ latitude.toFixed(7) }},
-          Longitude: {{ longitude.toFixed(7) }}
-        </v-alert>
-
-        <v-alert
           v-if="error"
           type="error"
           density="compact"
