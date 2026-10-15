@@ -33,7 +33,7 @@ export interface Registry {
   }
   'auth.create_user': {
     methods: ["POST"]
-    pattern: '/api/auth/users'
+    pattern: '/api/auth/createuser'
     types: {
       body: {}
       paramsTuple: []

@@ -40,7 +40,7 @@ export class ApiModule {
     throw new Error('Erro na comunicação com a API')
   }
 
-  if (response.status !== 200) {
+  if (response.status < 200 || response.status >= 300) {
     throw new Error(
       response.body?.errors?.base?.toString?.() ||
       'Erro desconhecido'
@@ -68,7 +68,7 @@ export class ApiModule {
         return this.handleResponse(response)
       })
       .catch((e) => {
-        if (notifyError) {
+        if (notifyError && ApiAdapter.instance) {
           ApiAdapter.instance.notify.error(e?.message || e, notifyErrorAsModal)
         }
         throw e
@@ -96,7 +96,7 @@ export class ApiModule {
         return this.handleResponse(response)
       })
       .catch((e) => {
-        if (notifyError) {
+        if (notifyError && ApiAdapter.instance) {
           ApiAdapter.instance.notify.error(e?.message || e, notifyErrorAsModal)
         }
         throw e

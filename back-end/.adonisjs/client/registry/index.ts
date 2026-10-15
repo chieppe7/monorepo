@@ -20,8 +20,8 @@ const routes = {
   },
   'auth.create_user': {
     methods: ["POST"],
-    pattern: '/api/auth/users',
-    tokens: [{"old":"/api/auth/users","type":0,"val":"api","end":""},{"old":"/api/auth/users","type":0,"val":"auth","end":""},{"old":"/api/auth/users","type":0,"val":"users","end":""}],
+    pattern: '/api/auth/createuser',
+    tokens: [{"old":"/api/auth/createuser","type":0,"val":"api","end":""},{"old":"/api/auth/createuser","type":0,"val":"auth","end":""},{"old":"/api/auth/createuser","type":0,"val":"createuser","end":""}],
     types: placeholder as Registry['auth.create_user']['types'],
   },
   'medicine.index': {
