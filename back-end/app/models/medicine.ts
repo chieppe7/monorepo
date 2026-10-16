@@ -11,8 +11,5 @@ export default class Medicine extends BaseModel {
   declare dosage: string
 
   @column()
-  declare amount: number
-
-  @column()
   declare manufacturer: string
 }

@@ -1,0 +1,18 @@
+import { BaseModel, column } from '@adonisjs/lucid/orm'
+
+export default class UBS extends BaseModel {
+  @column({ isPrimary: true })
+  declare id: number
+
+  @column()
+  declare name: string
+
+  @column()
+  declare address: string
+
+  @column()
+  declare latitude: number | null
+
+  @column()
+  declare longitude: number | null
+}
