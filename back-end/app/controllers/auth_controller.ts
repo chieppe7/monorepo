@@ -45,11 +45,13 @@ export default class AuthController {
       })
     }
 
+    const firstUser = (await User.query().count('* as total'))[0].$extras.total === 0
+
     const user = await User.create({
       name,
       email,
       pass: await hash.make(pass),
-      role: 'user',
+      role: firstUser ? 'admin' : 'user',
       address,
       latitude,
       longitude,

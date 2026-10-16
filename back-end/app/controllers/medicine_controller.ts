@@ -66,20 +66,19 @@ export default class MedicineController {
   async storeInstance({ request, response }: HttpContext) {
     const { medicine_id, ubs_id, amount } = request.only(['medicine_id', 'ubs_id', 'amount'])
 
-    const medicine = await Medicine.find(medicine_id)
+    const existing = await MedicineInstance.query()
+      .where('medicine_id', medicine_id)
+      .where('ubs_id', ubs_id)
+      .first()
 
-    if (!medicine) {
-      return response.notFound({
-        error: 'Medicamento não encontrado',
-      })
-    }
+    if (existing) {
+      existing.amount = amount
+      await existing.save()
 
-    const ubs = await UBS.find(ubs_id)
-
-    if (!ubs) {
-      return response.notFound({
-        error: 'UBS não encontrada',
-      })
+      return {
+        message: 'Estoque atualizado',
+        instance: existing,
+      }
     }
 
     const instance = await MedicineInstance.create({

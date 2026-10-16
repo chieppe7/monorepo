@@ -48,6 +48,17 @@ export const routes = [
           menu: true,
           allow: (user: UserData) => user?.role === 'admin'
         }
+      },
+      {
+        path: 'admin/stock_control',
+        name: 'stock_control',
+        component: () => import('../pages/admin/MedicineInstance.page.vue'),
+        meta: {
+          label: 'Controle de estoque',
+          icon: 'mdi-hospital-building',
+          menu: true,
+          allow: (user: UserData) => user?.role === 'admin'
+        }
       }
     ]
   }

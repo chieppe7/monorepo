@@ -7,16 +7,16 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export class MedicineInstanceSchema extends BaseModel {
-  static $columns = ['amount', 'id', 'medicineId', 'ubsId'] as const
+  static $columns = ['amount', 'id', 'medicine_id', 'ubs_id'] as const
   $columns = MedicineInstanceSchema.$columns
   @column()
   declare amount: number
   @column({ isPrimary: true })
   declare id: number
   @column()
-  declare medicineId: number
+  declare medicine_id: number
   @column()
-  declare ubsId: number
+  declare ubs_id: number
 }
 
 export class MedicineSchema extends BaseModel {
@@ -48,7 +48,16 @@ export class UbSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['address', 'email', 'id', 'latitude', 'longitude', 'name', 'pass', 'role'] as const
+  static $columns = [
+    'address',
+    'email',
+    'id',
+    'latitude',
+    'longitude',
+    'name',
+    'pass',
+    'role',
+  ] as const
   $columns = UserSchema.$columns
   @column()
   declare address: string
