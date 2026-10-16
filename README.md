@@ -16,5 +16,5 @@ Instruções de execução:
         - docker compose exec back-end node ace migration:run
     - certifique-se que todos os containers estão rodando e acesse o front-end via localhost:5173
 
-    - para criar uma nova conta de usuário basta usar o botão entrar e digitar os dados desejados.
+    - primeira conta registrada tera privilegions admin as demais serao usuarios comuns.
 
