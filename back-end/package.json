@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "node ace serve --watch",
-    "dev:hostless": "node bin/server.js",
+    "dev:hostless": "node --import=@poppinss/ts-exec bin/server.ts",
     "build": "node ace build"
   },
   "imports": {

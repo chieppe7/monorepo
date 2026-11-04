@@ -3,7 +3,11 @@
 
 set -e
 
-echo "Iniciando backend AdonisJS..."
+echo "================================"
+echo "HOSTLESS STARTUP"
+echo "================================"
+
+echo "Iniciando backend sem Assembler DevServer..."
 
 HOST=0.0.0.0 PORT=3333 \
 npm run dev:hostless --workspace=back-end &
@@ -11,7 +15,6 @@ npm run dev:hostless --workspace=back-end &
 BACKEND_PID=$!
 
 cleanup() {
-  echo "Encerrando backend..."
   kill "$BACKEND_PID" 2>/dev/null || true
 }
 
