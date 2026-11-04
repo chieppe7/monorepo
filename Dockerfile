@@ -1,15 +1,11 @@
-FROM node:22
+FROM node:22-bookworm-slim
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-
-COPY front-end ./front-end
-COPY back-end ./back-end
-COPY shared ./shared
+COPY . .
 
 RUN npm ci
 
 EXPOSE 5173
 
-CMD ["npm", "run", "dev"]
+CMD ["sh", "scripts/dev-hostless.sh"]
