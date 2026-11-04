@@ -9,7 +9,8 @@
     "./registry": "./.adonisjs/client/registry/index.ts"
   },
   "scripts": {
-    "dev": "node ace serve --hmr",
+    "dev": "node ace serve --watch",
+    "dev:hostless": "node ace serve",
     "build": "node ace build"
   },
   "imports": {
