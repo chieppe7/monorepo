@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "node ace serve --watch",
-    "dev:hostless": "node ace serve",
+    "dev:hostless": "node bin/server.js",
     "build": "node ace build"
   },
   "imports": {
