@@ -20,7 +20,7 @@ const dbConfig = defineConfig({
         host: env.get('PG_HOST'),
         port: Number(env.get('PG_PORT')),
         user: env.get('PG_USER'),
-        password: env.get('PG_PASSWORD'),
+        password: env.get('PG_PASSWORD').release(),
         database: env.get('PG_DB_NAME'),
         ssl: {
           rejectUnauthorized: true,
