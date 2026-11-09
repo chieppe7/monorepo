@@ -24,4 +24,12 @@ export default await Env.create(new URL('../', import.meta.url), {
 
   // Session
   SESSION_DRIVER: Env.schema.enum(['cookie', 'memory', 'database'] as const),
+
+  // Database
+  DB_CONNECTION: Env.schema.enum(['pg', 'sqlite'] as const),
+  PG_HOST: Env.schema.string(),
+  PG_PORT: Env.schema.number(),
+  PG_USER: Env.schema.string(),
+  PG_PASSWORD: Env.schema.secret(),
+  PG_DB_NAME: Env.schema.string(),
 })
