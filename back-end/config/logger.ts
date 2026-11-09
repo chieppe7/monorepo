@@ -12,8 +12,8 @@ const loggerConfig = defineConfig({
 
       transport: {
         targets: [
-          targets.stream({
-            stream: process.stdout,
+          targets.file({
+            destination: 1,
           }),
         ],
       },
